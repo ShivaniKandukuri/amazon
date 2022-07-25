@@ -1,10 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show,:edit,:update,:destroy]
+  before_action :require_user, except: [:show, :index]
   before_action :require_admin_user, only: [:create,:edit, :update, :destroy]
   def index
     @q=Product.ransack(params[:q])
     @products=@q.result(distinct:true)
     @products= Product.paginate(:page => params[:page], :per_page=>3)
+    @cartitem =Cartitem.new
   end
   def new
     @product=Product.new
@@ -37,7 +39,7 @@ class ProductsController < ApplicationController
     @product=Product.find(params[:id])
   end
   def product_params
-    params.require(:product).permit(:name,:cost,:description,:rating)
+    params.require(:product).permit(:name,:cost,:description,:rating,:category_id)
   end
   def require_admin_user
     if current_user.role!='admin'

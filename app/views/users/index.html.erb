@@ -15,10 +15,12 @@
         <td><%= a.email %></td>
         <td><%= a.role %></td>
         <td><%= link_to 'Show',user_path(a)%></td>
+        <% if current_user.role == 'admin' %>
         <td>
               <%= link_to "Edit", edit_user_path(a) %>
               <%= link_to "Delete", user_path(a),method: :delete, data: {confirm: "Are you sure?"} %>
         </td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>

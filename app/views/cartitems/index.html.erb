@@ -3,20 +3,21 @@
   <thead>
     <tr>
       <th>Product : </th>
+      <th>Product name :</th>
       <th>Cart : </th>
-      <th colspan="3"> Actions : </th>
+      <th colspan="4"> Actions : </th>
       </tr>
     </thead>
     <tbody>
       <% @cartitems.each do |a| %>
       <tr>
         <td><%= a.product_id %></td>
+        <td><%= a.product.name %></td>
         <td><%= a.cart_id %></td>
         <td><%= link_to 'Show',cartitem_path(a)%></td>
-        <td>
-              <%= link_to "Edit", edit_cartitem_path(a) %>
-              <%= link_to "Delete", cartitem_path(a),method: :delete, data: {confirm: "Are you sure?"} %>
-        </td>
+        <td><%= link_to "Edit", edit_cartitem_path(a) %></td>
+        <td><%= link_to "Delete", cartitem_path(a),method: :delete, data: {confirm: "Are you sure?"} %></td>
+        <td><%= link_to 'order',new_order_path %></td>
       </tr>
       <% end %>
     </tbody>
@@ -24,3 +25,4 @@
 
 
 <%= link_to 'create new cartitem',new_cartitem_path%>
+<%= link_to 'return to products',products_path %>

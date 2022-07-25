@@ -1,6 +1,9 @@
 <h1> Showing cartitems </h1>
+<p><strong>Item :</strong><%= @cartitem.product.name %></p>
 <p><strong>Product :</strong><%= @cartitem.product_id %></p>
 <p><strong>Cart :</strong><%= @cartitem.cart_id %></p>
+
+
 <%= link_to "Edit", edit_cartitem_path(@cartitem) %>
 <%= link_to "Delete", cartitem_path(@cartitem),method: :delete, data: {confirm: "Are you sure?"} %>
 

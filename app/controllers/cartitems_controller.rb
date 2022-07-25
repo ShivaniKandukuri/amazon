@@ -12,7 +12,7 @@ class CartitemsController < ApplicationController
   end
 
   def create
-    product = Product.find(params[:product_id])
+     product = Product.find(params[:product_id])
      @cartitem = @cart.add_product(product)
     if @cartitem.save
       flash[:notice]="cartitem created successfully"

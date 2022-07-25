@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: :new
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+
   def index
     @q=Order.ransack(params[:q])
     @orders=@q.result(distinct:true)
@@ -18,7 +19,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.name=current_user.name
-    @order.add_cartitems_from_cart(@cart)
+    @order.add_line_items_from_cart(@cart)
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
@@ -31,15 +32,13 @@ class OrdersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @order.update(order_params)
+      if @order.update_attributes(order_params)
         flash[:notice]="Order updated successfully"
         redirect_to @order
       else
         render 'edit'
       end
     end
-  end
   def destroy
     @order.destroy
     redirect_to orders_path

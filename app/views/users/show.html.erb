@@ -3,6 +3,8 @@
 <p><strong>Name :</strong><%= @user.name %></p>
 <p><strong>Email :</strong><%= @user.email %></p>
 <p><strong>Role :</strong><%= @user.role %></p>
+<% if current_user.role == 'admin' %>
 <%= link_to "Edit", edit_user_path(@user) %>
 <%= link_to "Delete", destroy_user_session_path(@user),method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>
 <%= link_to "return to users",users_path %>

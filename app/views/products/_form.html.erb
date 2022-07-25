@@ -27,7 +27,7 @@
     <%= f.label :Rating %><br/>
     <%= f.number_field :rating %>
   </p>
-
+  <p><%= f.collection_select(:category_id, Category.all, :id, :name, { :prompt => 'Select a Category', :selected => @product.category_id }, { class: 'form-control' }) %></p>
   <p>
     <%= f.submit %>
   </p>
