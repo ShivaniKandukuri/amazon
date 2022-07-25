@@ -1,0 +1,15 @@
+<% if @cart.errors.any? %>
+<ul>
+  <% @cart.errors.full_messages.each do |m| %>
+  <%= m %>
+  <% end %>
+</ul>
+<% end %>
+
+<%= form_with(model: @cart,local: true) do |f| %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

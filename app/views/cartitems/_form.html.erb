@@ -1,0 +1,24 @@
+<% if @cartitem.errors.any? %>
+<ul>
+  <% @cartitem.errors.full_messages.each do |m| %>
+  <%= m %>
+  <% end %>
+</ul>
+<% end %>
+
+<%= form_with(model: @cartitem,local: true) do |f| %>
+
+  <p>
+    <%= f.label :product_id %><br/>
+    <%= f.number_field :product_id %>
+  </p>
+  <p>
+    <%= f.label :cart_id %><br/>
+    <%= f.number_field :cart_id %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

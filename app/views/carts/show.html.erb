@@ -1,0 +1,11 @@
+<h1> Showing carts </h1>
+<ul>
+<% @cart.cartitems.each do |item| %>
+<li><%= item.quantity %> &times; <%= item.product.name %></li>
+<li><%= item.product.title %></li>
+<li><%= item.total_price %></li>
+<% end %>
+</ul>
+<%= button_to 'Empty cart', @cart,
+method: :delete,
+data: { confirm: 'Are you sure?' } %>
