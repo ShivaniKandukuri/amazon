@@ -9,7 +9,7 @@ class Cart < ApplicationRecord
     end
     current_item
   end
-  def total_price
-    cartitems.to_a.sum { |item| item.total_price }
+  def totalcartprice
+    cartitems.collect{|cartitem| cartitem.valid? ? cartitem.total_price : 0}.sum
   end
 end

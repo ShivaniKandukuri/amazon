@@ -1,4 +1,13 @@
 <h1> Products listing page </h1>
-<%= render 'products/search_form.html.erb'%>
+<%= image_tag 'amazonimages/product.png',width:'500px',height:'300px'%>
+<form class="search" action="/search">
+ <input class="search" name="q" type="text" placeholder="search" aria-label="Search">
+    <button class="search" type="submit">Search</button>
+</form>
+
 <%= render 'product' %>
 <%= will_paginate @products %>
+<p><%= link_to 'back',categories_path %></p>
+<% if current_user.role != 'admin' %>
+<p><%= link_to 'wishlist',wishlists_path %></p>
+<% end %>

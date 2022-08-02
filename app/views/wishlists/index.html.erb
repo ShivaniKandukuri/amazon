@@ -1,0 +1,6 @@
+<h1>Wishlisted products</h1>
+<% @wishlist.each do |product| %>
+<strong>name : </strong><%= product.name %>
+<strong>price : </strong><%= product.price %>
+<br>
+<% end %>

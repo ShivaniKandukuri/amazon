@@ -1,0 +1,14 @@
+<h1> New Pay </h1>
+<%= form_with(model: @pay,local: true) do |f| %>
+
+  <p>
+    <%= f.label :Type %><br/>
+    <%= f.text_field :paytype %>
+  </p>
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

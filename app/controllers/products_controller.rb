@@ -1,12 +1,18 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show,:edit,:update,:destroy]
+  before_action :set_product, only: [:show,:edit,:update,:destroy,:wishlist]
   before_action :require_user, except: [:show, :index]
   before_action :require_admin_user, only: [:create,:edit, :update, :destroy]
   def index
-    @q=Product.ransack(params[:q])
-    @products=@q.result(distinct:true)
-    @products= Product.paginate(:page => params[:page], :per_page=>3)
-    @cartitem =Cartitem.new
+   @products=Product.paginate(page: params[:page], per_page: 3)
+  #@products = Product.search(params[:search])
+
+  end
+  def search
+    @products = Product.where("name LIKE ?","%"+params[:q]+"%")
+  end
+  def wishlist
+    Wishlist.create(user_id:current_user.id,product_id:@product.id)
+    redirect_to products_path
   end
   def new
     @product=Product.new
@@ -39,7 +45,7 @@ class ProductsController < ApplicationController
     @product=Product.find(params[:id])
   end
   def product_params
-    params.require(:product).permit(:name,:cost,:description,:rating,:category_id)
+    params.require(:product).permit(:name,:price,:description,:rating,:category_id)
   end
   def require_admin_user
     if current_user.role!='admin'

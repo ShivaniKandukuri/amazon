@@ -34,6 +34,7 @@ class CartitemsController < ApplicationController
   end
   def destroy
     @cartitem.destroy
+    flash[:notice]="cartitem deleted"
     redirect_to cartitems_path
   end
   private

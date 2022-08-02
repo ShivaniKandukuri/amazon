@@ -4,9 +4,9 @@
   <thead>
     <tr>
       <th>Name of user</th>
-      <th>Address</th>
-      <th>cartitems</th>
-      <th colspan="3"></th>
+      <th >Item</th>
+      <th >Price</th>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
 
@@ -14,13 +14,14 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.name %></td>
-        <td><%= order.address %></td>
         <% order.cartitems.each do |a| %>
-        <td><%=   a.product.name %></td>
+        <td><%= a.product.name %></td>
+        <td><%= a.product.price %></td>
+
         <% end %>
+
         <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order_path(order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +29,7 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+
+
+<%= link_to 'New Order', new_order_path %><br>
+<%= link_to 'cart',carts_path %>

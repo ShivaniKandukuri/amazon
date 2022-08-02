@@ -1,17 +1,48 @@
+<h1>Details of order:</h1>
 <p>
-  <strong>Name:</strong>
+  <strong>User Name:</strong>
   <%= @order.name %>
 </p>
 
 <p>
-  <strong>Address:</strong>
-  <%= @order.address %>
+  <strong>Line1:</strong>
+  <%= @order.Line1 %>
 </p>
 <p>
+  <strong>Line2:</strong>
+  <%= @order.Line2 %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @order.city %>
+</p>
+<p>
+  <strong>state:</strong>
+  <%= @order.state %>
+</p>
+<p>
+  <strong>postalcode:</strong>
+  <%= @order.postalcode %>
+</p>
+<p>
+  <strong>country:</strong>
+  <%= @order.country %>
+</p>
+
+<p>
+  <strong>Mobilenumber:</strong>
+  <%= @order.mobilenumber %>
+</p>
+<p>
+  <strong>Pay type:</strong>
+  <%= @order.pay.paytype %>
+</p>
+
+<p>
 <% @order.cartitems.each do |a| %>
-<td><strong>Product:</strong><%=   a.product.name %></td>
+<td><p><strong>Product:</strong><%=   a.product.name %></p></td>
 <% end %>
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
+
 <%= link_to 'Back', orders_path %>

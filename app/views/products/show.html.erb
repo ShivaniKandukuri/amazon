@@ -5,6 +5,15 @@
 <p><strong>Price :</strong><%= @product.price %></p>
 <p><strong>Description :</strong><%= @product.description %></p>
 <p><strong>Rating :</strong><%= @product.rating %></p>
+<%= image_tag(@product.image.picture.url) %><br>
+<% if user_signed_in? %>
+  <% if @product.wishlisted?(current_user) %>
+    <%= button_to "wishlist", wishlist_path(@product),method:"put",disabled:true %>
+  <% else  %>
+    <%= button_to "wishlist", wishlist_path(@product),method:"put" %>
+  <% end %>
+<% end %>
+
 
 <%= link_to "Edit", edit_product_path(@product) %>
 <%= link_to "Delete", product_path(@product),method: :delete, data: {confirm: "Are you sure?"} %>

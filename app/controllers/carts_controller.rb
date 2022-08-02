@@ -1,15 +1,15 @@
 class CartsController < ApplicationController
- before_action :set_cart, only: [:show, :edit, :update, :destroy]
+ before_action :set_cart, only: [:show, :destroy]
   def index
     @carts = []
     if session[:cart_id] != nil
       @carts << Cart.find_by_id(session[:cart_id])
     end
   end
-  def show
-  end
   def new
     @cart=Cart.new
+  end
+  def show
   end
 
   def create
@@ -21,19 +21,10 @@ class CartsController < ApplicationController
       render 'new'
     end
   end
-  def edit
-  end
-  def update
-    if @cart.update(cart_params)
-      flash[:notice]="cart updated successfully"
-      redirect_to @cart
-    else
-      render 'edit'
-    end
-  end
   def destroy
     @cart.destroy
-    redirect_to carts_path
+    flash[:notice]="cart cleared successfully"
+    redirect_to products_path
   end
   private
   def set_cart

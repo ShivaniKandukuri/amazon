@@ -1,3 +1,8 @@
 <h1> WELCOME TO AMAZON </h1>
+<%= image_tag 'amazonimages/logo.png',width:'500px',height:'300px'%>
 <p><%= link_to 'Sign out',destroy_user_session_path,method: :delete %></p>
 <p><%= link_to 'categories',categories_path %></p>
+<% if current_user.role == 'admin'  %>
+   <p><%= link_to 'users',users_path %></p> 
+<% end %>
+<p> <%= link_to 'my_profile',current_user%> </p>

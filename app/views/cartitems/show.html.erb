@@ -5,7 +5,10 @@
 
 
 <%= link_to "Edit", edit_cartitem_path(@cartitem) %>
-<%= link_to "Delete", cartitem_path(@cartitem),method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "Delete", cartitem_path(@cartitem),method: :delete, data: {confirm: "Are you sure?"} %><br>
 
-<%= link_to 'return to cartitems',cartitems_path %>
-<%= link_to 'order',new_order_path %>
+
+
+<%= link_to 'cart',carts_path %><br>
+
+<%= link_to 'return to products',products_path %>

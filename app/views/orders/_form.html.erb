@@ -8,11 +8,35 @@
         <% end %>
       </ul>
   <% end %>
-
   <p>
-    <%= form.label :address %>
-    <%= form.text_area :address, rows: 3, cols: 40 %>
+    <%= form.label :Line1 %>
+    <%= form.text_field :Line1 %>
   </p>
+  <p>
+    <%= form.label :Line2 %>
+    <%= form.text_field  :Line2 %>
+  </p>
+  <p>
+    <%= form.label :city %>
+    <%= form.text_field  :city %>
+  </p>
+  <p>
+    <%= form.label :state %>
+    <%= form.text_field  :state %>
+  </p>
+  <p>
+    <%= form.label :postalcode %>
+    <%= form.number_field  :postalcode %>
+  </p>
+  <p>
+    <%= form.label :country %>
+    <%= form.text_field  :country %>
+  </p>
+  <p>
+    <%= form.label :mobilenumber %>
+    <%= form.number_field :mobilenumber %>
+  </p>
+  <p><%= form.collection_select(:pay_id,Pay.all, :id, :paytype, { :prompt => 'Select paytype', :selected => @order.pay_id }, { class: 'form-control' }) %></p>
 
   <p>
     <%= form.submit%>

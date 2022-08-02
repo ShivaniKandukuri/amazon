@@ -8,6 +8,9 @@ class UsersController < ApplicationController
   end
   def show
   end
+  def my_wishlists
+   @wishlists = current_user.wishlists
+ end
   def new
     @user=User.new
   end
@@ -43,7 +46,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:role,:email)
   end
   def require_same_user
-    if current_user != @user
+    if current_user != @user 
       flash[:alert] = "You can only edit or delete your own account"
       redirect_to @user
     end

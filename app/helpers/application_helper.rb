@@ -5,5 +5,7 @@ module ApplicationHelper
       redirect_to users_path
     end
   end
-
+  def logged_in?
+      !!current_user
+  end
 end

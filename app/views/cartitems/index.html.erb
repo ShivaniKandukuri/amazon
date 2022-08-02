@@ -5,6 +5,7 @@
       <th>Product : </th>
       <th>Product name :</th>
       <th>Cart : </th>
+      <th>Price:</th>
       <th colspan="4"> Actions : </th>
       </tr>
     </thead>
@@ -14,15 +15,18 @@
         <td><%= a.product_id %></td>
         <td><%= a.product.name %></td>
         <td><%= a.cart_id %></td>
+        <td><%=a.total_price%></td>
         <td><%= link_to 'Show',cartitem_path(a)%></td>
         <td><%= link_to "Edit", edit_cartitem_path(a) %></td>
         <td><%= link_to "Delete", cartitem_path(a),method: :delete, data: {confirm: "Are you sure?"} %></td>
-        <td><%= link_to 'order',new_order_path %></td>
+
       </tr>
       <% end %>
     </tbody>
 </table>
 
 
-<%= link_to 'create new cartitem',new_cartitem_path%>
-<%= link_to 'return to products',products_path %>
+
+<%= link_to 'create new cartitem',new_cartitem_path%><br>
+<%= link_to 'return to products',products_path %><br>
+<%= link_to 'cart',carts_path %>

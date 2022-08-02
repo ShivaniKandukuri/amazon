@@ -1,14 +1,15 @@
-<% if @cart.errors.any? %>
-<ul>
-  <% @cart.errors.full_messages.each do |m| %>
-  <%= m %>
-  <% end %>
-</ul>
-<% end %>
+<%= form_with(model: @cart, local: true) do |form| %>
+  <% if @cart.errors.any? %>
+      <h2><%= pluralize(cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
 
-<%= form_with(model: @cart,local: true) do |f| %>
-  <p>
-    <%= f.submit %>
-  </p>
+      <ul>
+        <% cart.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+
+  <p>  <%= form.submit %> </p>
 
 <% end %>
